@@ -45,7 +45,41 @@ public class TElementoAB<T> implements IElementoAB<T> {
 
     @Override
     public TElementoAB<T> buscar(Comparable unaEtiqueta) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        TElementoAB resultado = null;
+        if (unaEtiqueta.compareTo(this.getEtiqueta()) == 0) {
+            resultado = this;
+        } else {
+            if (unaEtiqueta.compareTo(this.getEtiqueta()) < 0) {
+                if (this.getHijoIzq() != null) {
+                    resultado = this.getHijoIzq().buscar(unaEtiqueta);
+                }
+            } else {
+                if (this.getHijoDer() != null) {
+                    resultado = this.getHijoDer().buscar(unaEtiqueta);
+                }
+            }
+        }
+        return resultado;
+    }
+
+    public TElementoAB<T> buscar(Comparable unaEtiqueta, int[] cont) {
+        TElementoAB resultado = null;
+        if (unaEtiqueta.compareTo(this.getEtiqueta()) == 0) {
+            resultado = this;
+        } else {
+            if (unaEtiqueta.compareTo(this.getEtiqueta()) < 0) {
+                if (this.getHijoIzq() != null) {
+                    cont[0]++;
+                    resultado = this.getHijoIzq().buscar(unaEtiqueta, cont);
+                }
+            } else {
+                if (this.getHijoDer() != null) {
+                    cont[0]++;
+                    resultado = this.getHijoDer().buscar(unaEtiqueta, cont);
+                }
+            }
+        }
+        return resultado;
     }
 
     public boolean insertar(TElementoAB<T> elemento, int[] cont) {
@@ -72,39 +106,6 @@ public class TElementoAB<T> implements IElementoAB<T> {
     }
 
     @Override
-    public String preOrden() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.getEtiqueta().toString() + ", ");
-        if (this.hijoIzq != null) {
-            sb.append(this.hijoIzq.preOrden());
-        }
-        if (this.hijoDer != null) {
-            sb.append(this.hijoDer.preOrden());
-        }
-        return sb.toString();
-    }
-
-    @Override
-    public String inOrden() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public String postOrden() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public T getDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public TElementoAB eliminar(Comparable unaEtiqueta) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public boolean insertar(TElementoAB<T> elemento) {
         if (this.etiqueta.equals(elemento.getEtiqueta())) {      //El elemento ya existe en el arbol
             return false;
@@ -124,6 +125,55 @@ public class TElementoAB<T> implements IElementoAB<T> {
                 return this.hijoDer.insertar(elemento);
             }
         }
+    }
+
+    @Override
+    public String preOrden() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getEtiqueta().toString() + ", ");
+        if (this.hijoIzq != null) {
+            sb.append(this.hijoIzq.preOrden());
+        }
+        if (this.hijoDer != null) {
+            sb.append(this.hijoDer.preOrden());
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public String inOrden() {
+        String res = "";
+        if (this.getHijoIzq() != null) {
+            res += this.getHijoIzq().postOrden();
+        }
+        res += this.getEtiqueta().toString() + ", ";
+        if (this.getHijoDer() != null) {
+            res += this.getHijoDer().postOrden();
+        }
+        return res;
+    }
+
+    @Override
+    public String postOrden() {
+        String res = "";
+        if (this.getHijoIzq() != null) {
+            res += this.getHijoIzq().postOrden();
+        }
+        if (this.getHijoDer() != null) {
+            res += this.getHijoDer().postOrden();
+        }
+        res += this.getEtiqueta().toString() + ", ";
+        return res;
+    }
+
+    @Override
+    public T getDatos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public TElementoAB eliminar(Comparable unaEtiqueta) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

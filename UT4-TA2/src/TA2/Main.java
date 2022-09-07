@@ -23,7 +23,13 @@ public class Main {
             arbol.insertar(elemento);
         }
         
-        System.out.println(arbol.preOrden());
+        System.out.println("Recorrido en PreOrden: " + arbol.preOrden());
+        System.out.println("Recorrido en InOrden: " + arbol.inOrden());
+        System.out.println("Recorrido en PostOrden: " + arbol.postOrden());
+        
+        TElementoAB<Integer> elem = arbol.buscarCont(104);
+        
+        System.out.println("El elemento a buscar: " + elem.getEtiqueta().toString());
     }
     
 }
