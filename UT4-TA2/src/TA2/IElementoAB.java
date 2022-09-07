@@ -1,3 +1,5 @@
+package TA2;
+
 public interface IElementoAB<T> {
 
     /**

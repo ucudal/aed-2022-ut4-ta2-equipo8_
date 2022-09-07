@@ -1,4 +1,4 @@
-
+package TA2;
 
 
 public class TArbolBB<T> implements IArbolBB<T> {
@@ -16,7 +16,15 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public boolean insertar(TElementoAB<T> unElemento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int[] cont = new int[1];
+        cont[0] = 0;
+        if (!esVacia()) {
+            boolean res = raiz.insertar(unElemento, cont);
+            System.out.println(cont[0]);
+            return res;
+        }
+        raiz = unElemento;
+        return true;
     }
 
     @Override
@@ -26,7 +34,10 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public String preOrden() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(!esVacia()){
+            return this.raiz.preOrden();
+        }
+        return "";
     }
 
     @Override
@@ -44,4 +55,8 @@ public class TArbolBB<T> implements IArbolBB<T> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-       }
+    private boolean esVacia() {
+        return this.raiz == null;
+    }
+
+}
