@@ -23,8 +23,10 @@ public class ManejadorArchivosGenerico {
             BufferedWriter bw = new BufferedWriter(fw);
             for (int i = 0; i < listaLineasArchivo.length; i++){
                 String lineaActual = listaLineasArchivo[i];
-                bw.write(lineaActual);
-                bw.newLine();
+                if (!lineaActual.equals("")){   // Ajuste para eliminar espacios en blanco.
+                    bw.write(lineaActual);
+                    bw.newLine();
+                }
             }
             bw.close();
             fw.close();

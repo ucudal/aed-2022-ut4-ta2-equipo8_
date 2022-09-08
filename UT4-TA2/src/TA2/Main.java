@@ -27,9 +27,19 @@ public class Main {
         System.out.println("Recorrido en InOrden: " + arbol.inOrden());
         System.out.println("Recorrido en PostOrden: " + arbol.postOrden());
         
-        TElementoAB<Integer> elem = arbol.buscarCont(104);
-        
-        System.out.println("El elemento a buscar: " + elem.getEtiqueta().toString());
+        String[] consultas = ManejadorArchivosGenerico.leerArchivo("src/consultaPrueba.txt");
+        String[] resConsultas = new String[consultas.length];
+        for (int i = 0; i < consultas.length; i++){
+            if (arbol.buscarCont(Integer.parseInt(consultas[i])) != null){
+                resConsultas[i] = "clave: " + arbol.buscarCont(Integer.parseInt(consultas[i])).getEtiqueta().toString() + " contador: " + arbol.cont[0]; 
+            }
+            else{
+                resConsultas[i] = "";
+            }
+            System.out.println(resConsultas[i]);
+        }
+        ManejadorArchivosGenerico.escribirArchivo("src/resultadoConsultas.txt", resConsultas);
+        // Modificamos el método escribirArchivo de la clase ManejadorArchivosGenerico para que imprima en el archivo de texto en un formato más amigable a la vista
     }
     
 }

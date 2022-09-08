@@ -64,10 +64,10 @@ public class TElementoAB<T> implements IElementoAB<T> {
 
     public TElementoAB<T> buscar(Comparable unaEtiqueta, int[] cont) {
         TElementoAB resultado = null;
-        if (unaEtiqueta.compareTo(this.getEtiqueta()) == 0) {
+        if (unaEtiqueta.compareTo(this.etiqueta) == 0) {
             resultado = this;
         } else {
-            if (unaEtiqueta.compareTo(this.getEtiqueta()) < 0) {
+            if (unaEtiqueta.compareTo(this.etiqueta) < 0) {
                 if (this.getHijoIzq() != null) {
                     cont[0]++;
                     resultado = this.getHijoIzq().buscar(unaEtiqueta, cont);

@@ -12,6 +12,7 @@ public class TArbolBB<T> implements IArbolBB<T> {
     public TArbolBB() {
         raiz = null;
     }
+    static int[] cont = new int[1];
 
     @Override
     public boolean insertar(TElementoAB<T> unElemento) {
@@ -43,7 +44,6 @@ public class TArbolBB<T> implements IArbolBB<T> {
     }
 
     public TElementoAB<T> buscarCont(Comparable unaEtiqueta) {
-        int[] cont = new int[1];
         cont[0] = 0;
         if (this.raiz != null) {
             TElementoAB<T> elem = raiz.buscar(unaEtiqueta, cont);

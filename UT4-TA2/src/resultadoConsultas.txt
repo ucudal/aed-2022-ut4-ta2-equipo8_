@@ -1,0 +1,3 @@
+clave: 4292 contador: 1
+clave: 10903 contador: 12
+clave: 5354 contador: 0
